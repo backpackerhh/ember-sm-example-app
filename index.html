@@ -18,11 +18,27 @@
 
       <ul class="users-listing">
         {{#each user in controller}}
-          <li>{{user.name}}</li>
+          <li>
+            {{#link-to "user" user}}
+              {{user.name}}
+            {{/link-to}}
+          </li>
         {{else}}
           <li>No users found.</li>
         {{/each}}
       </ul>
+
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" id="user">
+      <div class="user-profile">
+        <img {{bind-attr src="avatarUrl"}} width="100" alt="User's avatar" />
+        <h2>{{name}}</h2>
+        <span>{{email}}</span>
+        <p>{{bio}}</p>
+        <span>Created {{creationDate}}</span>
+      </div>
     </script>
 
     <!-- Ember & other dependencies -->
@@ -36,7 +52,9 @@
     <script src="js/router.js"></script>
     <script src="js/routes/index.js"></script>
     <script src="js/routes/users.js"></script>
+    <script src="js/routes/user.js"></script>
     <script src="js/models/user.js"></script>
     <script src="js/controllers/users.js"></script>
+    <script src="js/controllers/user.js"></script>
   </body>
 </html>
