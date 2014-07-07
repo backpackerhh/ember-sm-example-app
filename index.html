@@ -5,7 +5,7 @@
     <title>User CRUD App</title>
   </head>
   <body>
-    <script type="text/x-handlebars" id="application">
+    <script type="text/x-handlebars">
       <div class="main">
         <h1>Hello World</h1>
 
@@ -13,7 +13,7 @@
       </div>
     </script>
 
-    <script type="text/x-handlebars" id="users">
+    <script type="text/x-handlebars" data-template-name="users">
       <div>Users: {{usersCount}}</div>
 
       <ul class="users-listing">
@@ -31,13 +31,39 @@
       {{outlet}}
     </script>
 
-    <script type="text/x-handlebars" id="user">
+    <script type="text/x-handlebars" data-template-name="user">
+      <button {{action "edit"}}>Edit</button>
+
       <div class="user-profile">
         <img {{bind-attr src="avatarUrl"}} width="100" alt="User's avatar" />
         <h2>{{name}}</h2>
         <span>{{email}}</span>
         <p>{{bio}}</p>
         <span>Created {{creationDate}}</span>
+      </div>
+
+      {{outlet}}
+    </script>
+
+    <script type="text/x-handlebars" data-template-name="user/edit">
+      <div class="user-edit">
+        <label>Choose user avatar</label>
+        <br>
+        {{input value=avatarUrl}}
+        <br>
+        <label>User name</label>
+        <br>
+        {{input value=name}}
+        <br>
+        <label>User email</label>
+        <br>
+        {{input value=email}}
+        <br>
+        <label>User short bio</label>
+        <br>
+        {{textarea value=bio}}
+        <br>
+        <button {{action "save"}}>Save</button>
       </div>
     </script>
 
@@ -53,8 +79,10 @@
     <script src="js/routes/index.js"></script>
     <script src="js/routes/users.js"></script>
     <script src="js/routes/user.js"></script>
+    <script src="js/routes/user_edit.js"></script>
     <script src="js/models/user.js"></script>
     <script src="js/controllers/users.js"></script>
     <script src="js/controllers/user.js"></script>
+    <script src="js/controllers/user_edit.js"></script>
   </body>
 </html>
