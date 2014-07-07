@@ -34,6 +34,16 @@
     <script type="text/x-handlebars" data-template-name="user">
       <button {{action "edit"}}>Edit</button>
 
+      {{#if deleteMode}}
+        <div class="confirm-box">
+          <h4>Really?</h4>
+          <button {{action "confirmDelete"}}> yes </button>
+          <button {{action "cancelDelete"}}> no </button>
+        </div>
+      {{else}}
+        <button {{action "delete"}}>Delete</button>
+      {{/if}}
+
       <div class="user-profile">
         <img {{bind-attr src="avatarUrl"}} width="100" alt="User's avatar" />
         <h2>{{name}}</h2>
